@@ -12,7 +12,6 @@
 #include "vtkObjectFactory.h"
 #include "vtkCommand.h"
 
-vtkCxxRevisionMacro(vtkBufferOutputWindow, "$Revision$");
 vtkStandardNewMacro(vtkBufferOutputWindow);
 
 vtkBufferOutputWindow::vtkBufferOutputWindow()

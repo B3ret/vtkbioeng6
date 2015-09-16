@@ -28,8 +28,6 @@
 #include "vtkInformationVector.h"
 
 
-
-vtkCxxRevisionMacro(vtkTesselateBoundaryLoops, "$Revision$");
 vtkStandardNewMacro(vtkTesselateBoundaryLoops);
 
 vtkTesselateBoundaryLoops::vtkTesselateBoundaryLoops()

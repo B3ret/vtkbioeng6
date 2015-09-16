@@ -17,7 +17,6 @@
 #include "vtkIdList.h"
 #include "vtkObjectFactory.h"
 
-vtkCxxRevisionMacro(vtkSelectCellsFilter, "$Revision$");
 vtkStandardNewMacro(vtkSelectCellsFilter);
 
 void vtkSelectCellsFilter::RemoveUnmarkedCells()

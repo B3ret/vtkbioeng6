@@ -37,7 +37,7 @@ class VTK_BIOENG_EXPORT vtkCellsFilter : public vtkPolyDataAlgorithm
 {
 public:
 
-  vtkTypeRevisionMacro(vtkCellsFilter, vtkPolyDataAlgorithm);
+  vtkTypeMacro(vtkCellsFilter, vtkPolyDataAlgorithm);
   void PrintSelf(ostream& os, vtkIndent indent);
   
   // Description:

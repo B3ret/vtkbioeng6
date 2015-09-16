@@ -57,7 +57,7 @@ class vtkMatrix4x4;
 class VTK_BIOENG_EXPORT vtkCollisionDetectionFilter : public vtkPolyDataAlgorithm
 {
 public:
-  vtkTypeRevisionMacro(vtkCollisionDetectionFilter, vtkPolyDataAlgorithm);
+  vtkTypeMacro(vtkCollisionDetectionFilter, vtkPolyDataAlgorithm);
   void PrintSelf(ostream& os, vtkIndent indent);
 
 //BTX

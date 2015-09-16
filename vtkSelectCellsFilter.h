@@ -37,7 +37,7 @@ public:
   // Constructs with initial values of zero.
   static vtkSelectCellsFilter *New();
 
-  vtkTypeRevisionMacro(vtkSelectCellsFilter, vtkCellsFilter);
+  vtkTypeMacro(vtkSelectCellsFilter, vtkCellsFilter);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

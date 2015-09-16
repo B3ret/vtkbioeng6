@@ -28,7 +28,7 @@
 class VTK_BIOENG_EXPORT vtkBufferOutputWindow : public vtkOutputWindow
 {
 public:
-  vtkTypeRevisionMacro(vtkBufferOutputWindow, vtkOutputWindow);
+  vtkTypeMacro(vtkBufferOutputWindow, vtkOutputWindow);
 
   static vtkBufferOutputWindow* New();
   

@@ -26,8 +26,6 @@
 #include "vtkInformation.h"
 #include "vtkInformationVector.h"
 
-vtkCxxRevisionMacro(vtkCellsFilter, "$Revision$");
-
 
 // Constructs with initial  values.
 vtkCellsFilter::vtkCellsFilter()

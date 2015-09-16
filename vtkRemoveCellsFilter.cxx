@@ -17,7 +17,6 @@
 #include "vtkIdList.h"
 #include "vtkObjectFactory.h"
 
-vtkCxxRevisionMacro(vtkRemoveCellsFilter, "$Revision$");
 vtkStandardNewMacro(vtkRemoveCellsFilter);
 
 
