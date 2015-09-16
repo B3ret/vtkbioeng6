@@ -98,7 +98,7 @@ public:
   
   // Description:
   // Set and Get the input vtk polydata models
-    void SetInput(int i, vtkPolyData *model);
+    void SetInputData(int i, vtkPolyData *model);
     vtkPolyData *GetInput(int i);
 
       

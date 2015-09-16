@@ -46,18 +46,18 @@ vtkTesselateBoundaryLoops::vtkTesselateBoundaryLoops()
     this->FeatureEdges->BoundaryEdgesOn();
     this->FeatureEdges->FeatureEdgesOff();
   this->Clean  = vtkCleanPolyData::New();
-    this->Clean->SetInput(this->FeatureEdges->GetOutput());
+    this->Clean->SetInputConnection(this->FeatureEdges->GetOutputPort());
   this->Stripper = vtkStripper::New();
-    this->Stripper->SetInput(Clean->GetOutput());
+    this->Stripper->SetInputConnection(Clean->GetOutputPort());
   this->tmpPolyData = vtkPolyData::New();
   this->Reverse = vtkReverseSense::New();
-    this->Reverse->SetInput(tmpPolyData);
+    this->Reverse->SetInputData(tmpPolyData);
   this->Tesselator = vtkTriangleFilter::New();
-    this->Tesselator->SetInput(this->Reverse->GetOutput());
+    this->Tesselator->SetInputConnection(this->Reverse->GetOutputPort());
   this->Append = vtkAppendPolyData::New();
-    this->Append->AddInput(this->Tesselator->GetOutput());
+    this->Append->AddInputConnection(this->Tesselator->GetOutputPort());
   this->Clean2 = vtkCleanPolyData::New();
-      this->Clean2->SetInput(this->Append->GetOutput());
+      this->Clean2->SetInputConnection(this->Append->GetOutputPort());
 }
 
 vtkTesselateBoundaryLoops::~vtkTesselateBoundaryLoops()
@@ -88,7 +88,7 @@ int vtkTesselateBoundaryLoops::RequestData(
   vtkPolyData *output = vtkPolyData::SafeDownCast(
     outInfo->Get(vtkDataObject::DATA_OBJECT()));
   
-  this->FeatureEdges->SetInput(input);
+  this->FeatureEdges->SetInputData(input);
   // sometimes a boundary edge is non-manifold.
   this->FeatureEdges->SetNonManifoldEdges(this->NonManifoldEdges);    
 
@@ -107,7 +107,7 @@ int vtkTesselateBoundaryLoops::RequestData(
   
   if (this->AppendTesselationToInput)
     {
-    this->Append->AddInput(input);
+    this->Append->AddInputData(input);
     this->Clean2->Update();
     last = this->Clean2->GetOutput();
     }

@@ -38,7 +38,7 @@ class vtkReverseSense;
 class VTK_BIOENG_EXPORT vtkTesselateBoundaryLoops : public vtkPolyDataAlgorithm
 {
 public:
-  vtkTypeRevisionMacro(vtkTesselateBoundaryLoops,vtkPolyDataAlgorithm);
+  vtkTypeMacro(vtkTesselateBoundaryLoops,vtkPolyDataAlgorithm);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

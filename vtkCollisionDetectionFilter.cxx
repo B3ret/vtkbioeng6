@@ -107,7 +107,7 @@ vtkCollisionDetectionFilter::~vtkCollisionDetectionFilter()
 
 // Description:
 // Set and Get the input data...
-void vtkCollisionDetectionFilter::SetInput(int idx, vtkPolyData *input)
+void vtkCollisionDetectionFilter::SetInputData(int idx, vtkPolyData *input)
 {
 
   if (2 <= idx || idx < 0)
@@ -117,7 +117,7 @@ void vtkCollisionDetectionFilter::SetInput(int idx, vtkPolyData *input)
     }
     
   // Ask the superclass to connect the input.
-  this->SetNthInputConnection(idx, 0, input? input->GetProducerPort() : 0);
+  this->SetInputData(idx, input);
 }
 
 
@@ -132,7 +132,7 @@ vtkPolyData *vtkCollisionDetectionFilter::GetInput(int idx)
       << " is out of range in GetInput. Only two inputs allowed!");
     return NULL;
     }
-  
+
   return vtkPolyData::SafeDownCast(
     this->GetExecutive()->GetInputData(idx, 0));
 }

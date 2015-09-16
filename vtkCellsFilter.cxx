@@ -143,7 +143,9 @@ void vtkCellsFilter::Initialize()
   
   // This also gets around the problem when the user is in the event
   // loop but some filter has been modified upstream, changing the data.
-  this->GetPolyDataInput(0)->Update();
+
+  // HB: Does this work?
+  this->GetInputAlgorithm(0, 0)->Update();
   
   vtkIdType numCells = this->GetPolyDataInput(0)->GetNumberOfCells();
   this->CellIdList->SetNumberOfIds(numCells);

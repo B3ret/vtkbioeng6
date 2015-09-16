@@ -82,7 +82,7 @@ int main()
      clip->Update();
      clipped = vtkSmartPointer<vtkPolyData>::New();
      clipped->DeepCopy(clip->GetOutput());
-     append->AddInput(clipped);
+     append->AddInputData(clipped);
      }
 
    vtkPolyDataMapper *mapper1 = vtkPolyDataMapper::New();
