@@ -1,4 +1,4 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 2.4)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
 
 # Set the project/library name here.  Classes should be declared as
 # "class VTK_BIOENG_EXPORT vtkFoo"
@@ -78,7 +78,10 @@ IF(VTK_FOUND)
   CONFIGURE_FILE(${PROJECT_SOURCE_DIR}/vtkBioengConfigure.h.in
                  ${PROJECT_BINARY_DIR}/${PROJECT_NAME}Configure.h
                  @ONLY IMMEDIATE)
-
+                 
+  # VTK_MAKE_INSTANTIATOR3 was failing. See http://www.paraview.org/Bug/view.php?id=13864 
+  include(vtkMakeInstantiator)
+  
   # Create the instantiator for these classes.
   SET(VTK_USE_INSTANTIATOR_NEW 1)
   VTK_MAKE_INSTANTIATOR3("${PROJECT_NAME}Instantiator"
