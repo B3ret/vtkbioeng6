@@ -7,6 +7,15 @@ PROJECT(vtkBioeng)
 
 # Set your list of sources here.  Do not change the name of the
 # vtkLocal_SRCS variable.
+SET(vtkBioeng_HDRS
+vtkBufferOutputWindow.h
+vtkCollisionDetectionFilter.h
+vtkCellsFilter.h
+vtkRemoveCellsFilter.h
+vtkSelectCellsFilter.h
+vtkTesselateBoundaryLoops.h
+)
+
 SET(vtkBioeng_SRCS
 vtkBufferOutputWindow.cxx
 vtkCollisionDetectionFilter.cxx
@@ -92,7 +101,7 @@ IF(VTK_FOUND)
     "${PROJECT_NAME}Configure.h")
 
   # Create the library.
-  ADD_LIBRARY(${PROJECT_NAME} ${vtkBioeng_SRCS} ${vtkBioengInstantiator_SRCS})
+  ADD_LIBRARY(${PROJECT_NAME} ${vtkBioeng_HDRS} ${vtkBioeng_SRCS} ${vtkBioengInstantiator_SRCS})
   TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${vtkBioeng_LIBS})
 
   # Create Tcl wrappers if VTK is wrapped in Tcl.
