@@ -30,14 +30,6 @@ vtkCellsFilter
 ABSTRACT
 )
 
-# List the kits from VTK that are needed by this project.
-SET(vtkBioeng_LIBS
-vtkCommon
-vtkFiltering 
-vtkGraphics 
-vtkRendering 
-)
-
 #-----------------------------------------------------------------------------
 # Most users should not need to change anything below this line.
 
@@ -53,8 +45,11 @@ SET (EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin CACHE PATH
 MARK_AS_ADVANCED(LIBRARY_OUTPUT_PATH EXECUTABLE_OUTPUT_PATH)
 
 # Find and load VTK settings.
-FIND_PACKAGE(VTK REQUIRED)
+FIND_PACKAGE(VTK 6.0 REQUIRED)#COMPONENTS vtkRenderingOpenGL vtkInteractionStyle vtkFiltersModeling NO_MODULE)
 INCLUDE(${VTK_USE_FILE})
+
+#          
+#          vtkFiltersSources
 
 # Give user option of building shared or static libraries.  Default to
 # the choice made for VTK.
@@ -88,7 +83,7 @@ IF(VTK_FOUND)
                  ${PROJECT_BINARY_DIR}/${PROJECT_NAME}Configure.h
                  @ONLY IMMEDIATE)
                  
-  # VTK_MAKE_INSTANTIATOR3 was failing. See http://www.paraview.org/Bug/view.php?id=13864 
+  # HB: VTK_MAKE_INSTANTIATOR3 was failing. See http://www.paraview.org/Bug/view.php?id=13864 
   include(vtkMakeInstantiator)
   
   # Create the instantiator for these classes.
@@ -102,7 +97,7 @@ IF(VTK_FOUND)
 
   # Create the library.
   ADD_LIBRARY(${PROJECT_NAME} ${vtkBioeng_HDRS} ${vtkBioeng_SRCS} ${vtkBioengInstantiator_SRCS})
-  TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${vtkBioeng_LIBS})
+  TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${VTK_LIBRARIES})
 
   # Create Tcl wrappers if VTK is wrapped in Tcl.
   IF(VTK_WRAP_TCL)
@@ -111,13 +106,13 @@ IF(VTK_FOUND)
     VTK_WRAP_TCL2(${PROJECT_NAME}TCL vtkBioengTCL_SRCS ${vtkBioeng_SRCS} ${Kit_TCL_EXTRA_CMDS})
     ADD_LIBRARY(${PROJECT_NAME}TCL ${vtkBioengTCL_SRCS})
     TARGET_LINK_LIBRARIES(${PROJECT_NAME}TCL ${PROJECT_NAME})
-    FOREACH(c ${vtkBioeng_LIBS})
+    FOREACH(c ${VTK_LIBRARIES})
       TARGET_LINK_LIBRARIES(${PROJECT_NAME}TCL ${c}TCL)
     ENDFOREACH(c)
 
     # Create the list of kits that are required.
     SET(VTKBIOENG_KITS "")
-    FOREACH(c ${vtkBioeng_LIBS})
+    FOREACH(c ${VTK_LIBRARIES})
       SET(VTKBIOENG_KITS "${VTKBIOENG_KITS} ${c}")
     ENDFOREACH(c)
     FOREACH(c ${vtkBioeng_SRCS})
@@ -153,7 +148,7 @@ IF(VTK_FOUND)
     ADD_LIBRARY(${PROJECT_NAME}PythonD ${vtkBioengPYTHON_SRCS})
     ADD_LIBRARY(${PROJECT_NAME}Python MODULE ${PROJECT_NAME}PythonInit.cxx)
     TARGET_LINK_LIBRARIES(${PROJECT_NAME}PythonD ${PROJECT_NAME})
-    FOREACH(c ${vtkBioeng_LIBS})
+    FOREACH(c ${VTK_LIBRARIES})
       TARGET_LINK_LIBRARIES(${PROJECT_NAME}PythonD ${c}PythonD)
     ENDFOREACH(c)
     TARGET_LINK_LIBRARIES(${PROJECT_NAME}Python ${PROJECT_NAME}PythonD)
