@@ -116,7 +116,7 @@ void vtkCollisionDetectionFilter::SetInputData(int idx, vtkPolyData *input)
     }
     
   // Ask the superclass to connect the input.
-  this->SetInputData(idx, input);
+  vtkPolyDataAlgorithm::SetInputData(idx, input);
 }
 
 
