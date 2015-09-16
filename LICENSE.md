@@ -1,3 +1,6 @@
+Benjamin Hopfer: My minor modifications are under the same license, as the original one:
+
+------------------------- ORIGINAL LICENSE ------------------------------------------------------
 Copyright (c) 2014, Goodwin Lawlor
 All rights reserved.
 
