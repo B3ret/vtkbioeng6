@@ -42,7 +42,6 @@ public:
         sprintf(this->TextBuff, "No Contacts");
         }
       this->TextActor->SetInput(this->TextBuff);
-      this->RenWin->Render();
     }
 protected:
   vtkTextActor *TextActor;

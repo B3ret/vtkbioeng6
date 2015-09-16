@@ -70,6 +70,10 @@ int main()
 
    for (lines->InitTraversal(); lines->GetNextCell(numPts, pts); )
      {
+       if(numPts < 4)
+        {
+          continue;
+        }
      points->Reset();
      // don't close the loop by inserting the last point...
      // vtkSelectPolyData does it for you (and crashes if you do it)
